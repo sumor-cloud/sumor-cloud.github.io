@@ -20,12 +20,12 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: Install NPM dependencies
         run: npm ci
-      - name: Build
+      - name: Build the website
         run: npm run build
       - name: Upload artifacts
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: output
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
