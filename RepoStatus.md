@@ -44,3 +44,19 @@ SSL Web Server with Express, Support HTTP/2
 [![Coverage](https://github.com/sumor-cloud/cloud-app/actions/workflows/coverage.yml/badge.svg)](https://github.com/sumor-cloud/cloud-app/actions/workflows/coverage.yml)
 [![Audit](https://github.com/sumor-cloud/cloud-app/actions/workflows/audit.yml/badge.svg)](https://github.com/sumor-cloud/cloud-app/actions/workflows/audit.yml)
 [![Available](https://github.com/sumor-cloud/cloud-app/actions/workflows/available.yml/badge.svg)](https://github.com/sumor-cloud/cloud-app/actions/workflows/available.yml)
+
+# config
+
+[![CI](https://github.com/sumor-cloud/config/actions/workflows/ci.yml/badge.svg)](https://github.com/sumor-cloud/config/actions/workflows/ci.yml)
+[![Test](https://github.com/sumor-cloud/config/actions/workflows/ut.yml/badge.svg)](https://github.com/sumor-cloud/config/actions/workflows/ut.yml)
+[![Coverage](https://github.com/sumor-cloud/config/actions/workflows/coverage.yml/badge.svg)](https://github.com/sumor-cloud/config/actions/workflows/coverage.yml)
+[![Audit](https://github.com/sumor-cloud/config/actions/workflows/audit.yml/badge.svg)](https://github.com/sumor-cloud/config/actions/workflows/audit.yml)
+[![Available](https://github.com/sumor-cloud/config/actions/workflows/available.yml/badge.svg)](https://github.com/sumor-cloud/config/actions/workflows/available.yml)
+
+# logger
+
+[![CI](https://github.com/sumor-cloud/logger/actions/workflows/ci.yml/badge.svg)](https://github.com/sumor-cloud/logger/actions/workflows/ci.yml)
+[![Test](https://github.com/sumor-cloud/logger/actions/workflows/ut.yml/badge.svg)](https://github.com/sumor-cloud/logger/actions/workflows/ut.yml)
+[![Coverage](https://github.com/sumor-cloud/logger/actions/workflows/coverage.yml/badge.svg)](https://github.com/sumor-cloud/logger/actions/workflows/coverage.yml)
+[![Audit](https://github.com/sumor-cloud/logger/actions/workflows/audit.yml/badge.svg)](https://github.com/sumor-cloud/logger/actions/workflows/audit.yml)
+[![Available](https://github.com/sumor-cloud/logger/actions/workflows/available.yml/badge.svg)](https://github.com/sumor-cloud/logger/actions/workflows/available.yml)
