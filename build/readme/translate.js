@@ -14,6 +14,8 @@ const model = new Model({
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
 export default async () => {
+  const max = 5
+  let count = 0
   for (const pkg in packagesInfo) {
     const sourcePath = `${process.cwd()}/readmes/${pkg}`
     const files = await glob('**/*', { cwd: sourcePath })
@@ -31,20 +33,24 @@ export default async () => {
             console.log(`Translating ${pkg} ${file} to ${language}...`)
             const translateFile = await fse.readFile(sourceFilePath, 'utf-8')
             if (translateFile.length > 0 && translateFile.length < 7000) {
-              // const translatedFile = translateFile;
-              const llmResult = await model.chat('gpt-3.5-turbo', [
-                {
-                  role: 'system',
-                  content: `Translate user-entered Markdown content. The user's language code is ${language}. Only output the result, no need additional information.`
-                },
-                {
-                  role: 'user',
-                  content: translateFile
-                }
-              ])
-              const translatedFile = llmResult.content
-              await fse.writeFile(targetFilePath, translatedFile)
-              await delay(100)
+              if (count < max) {
+                count++
+                const llmResult = await model.chat('gpt-3.5-turbo', [
+                  {
+                    role: 'system',
+                    content: `Translate user-entered Markdown content. The user's language code is ${language}. Only output the result, no need additional information.`
+                  },
+                  {
+                    role: 'user',
+                    content: translateFile
+                  }
+                ])
+                const translatedFile = llmResult.content
+                await fse.writeFile(targetFilePath, translatedFile)
+                await delay(100)
+              } else {
+                return
+              }
             } else {
               console.log(`Skip ${pkg} ${file} to ${language} due to length ${translateFile.length}...`)
             }
