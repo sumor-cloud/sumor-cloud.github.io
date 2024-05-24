@@ -20,6 +20,7 @@ body{
   max-width: 1140px;
   margin: 0 auto;
   padding: 30px 70px;
+  padding-bottom: 94px;
 }
 
 .pageHeader{
@@ -187,10 +188,14 @@ body{
 }
 
 .footer{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
+  background: #ddd;
 }
 
 @media screen and (max-width: 431px) {
