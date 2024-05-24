@@ -1,28 +1,28 @@
 import fse from 'fs-extra'
 import i18n from './i18n.js'
 import pageTemplate from './pageTemplate.js'
-import packagesInfo from '../packagesInfo.js'
 import languages from './languages.js'
+import generateStatus from './generateStatus.js'
 
 export default async (data) => {
   const output = `${process.cwd()}/output/web`
   await fse.ensureDir(output)
 
-  const packages = Object.keys(packagesInfo)
-
   for (const language in i18n) {
     const baseLanguage = language.split('-')[0]
     const translateInfo = i18n[language]
 
+    const statusHtml = await generateStatus(language)
     const languageHome = `${output}/${language}`
     await fse.ensureDir(languageHome)
     await fse.writeFile(`${languageHome}/index.html`, pageTemplate({
       ...translateInfo,
       language,
       languages,
-      packages
+      statusHtml
     }))
 
+    const baseStatusHtml = await generateStatus(baseLanguage)
     let baseLanguageHome = `${output}/${baseLanguage}`
     if (baseLanguage === 'en') {
       baseLanguageHome = output
@@ -32,7 +32,7 @@ export default async (data) => {
       ...translateInfo,
       language: baseLanguage,
       languages,
-      packages
+      statusHtml: baseStatusHtml
     }))
   }
 }

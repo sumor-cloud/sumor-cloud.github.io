@@ -5,7 +5,7 @@ export default ({
   readyToGO,
   moreFrameworks,
   languages,
-  packages
+  statusHtml
 }) => {
   const languageDialog = languages.map(({ key, value }) => {
     if (key === 'en') {
@@ -14,13 +14,6 @@ export default ({
       return `<a href="/${key}">${value}</a>`
     }
   }).join(' | ')
-  const packagesDialog = packages.map(packageName => {
-    if (language === 'en') {
-      return `<a href="/${packageName}">@sumor/${packageName}</a>`
-    } else {
-      return `<a href="/${language}/${packageName}">@sumor/${packageName}</a>`
-    }
-  }).join('\n')
   let cloudAppUrl = `/${language}/cloud-app`
   if (language === 'en') {
     cloudAppUrl = '/cloud-app'
@@ -49,8 +42,8 @@ export default ({
         </div>
       </div>
     <div class="body">
-        <div class="packages">
-            ${packagesDialog}
+        <div class="status">
+            ${statusHtml}
         </div>
     </div>
 </body>
