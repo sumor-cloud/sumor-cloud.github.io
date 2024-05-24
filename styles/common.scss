@@ -1,0 +1,54 @@
+$border-radius: 4px;
+$color-primary: #5374fa;
+$color-light: #f8f9fa;
+$color-dark: #222;
+
+html,body{
+  margin: 0;
+}
+* {
+  box-sizing: border-box;
+}
+body{
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 1em;
+  line-height: 1.5;
+  color: $color-dark;
+  background-color: $color-light;
+}
+a{
+  color: $color-primary;
+  text-decoration: none;
+}
+
+pre code{
+  border-radius: $border-radius;
+}
+
+.hljs {
+  background: rgba(0, 0, 0, .1);
+}
+
+.body{
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 30px 70px;
+  padding-bottom: 50px;
+}
+
+body.dark{
+  color: $color-light;
+  background-color: $color-dark;
+  a{
+    color: $color-light;
+  }
+  .hljs {
+    background: rgba(0, 0, 0, .4);
+  }
+}
+
+@media screen and (max-width: 431px) {
+  .body{
+    padding: 20px;
+  }
+}

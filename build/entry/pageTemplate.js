@@ -7,7 +7,7 @@ export default ({
   languages,
   statusHtml
 }) => {
-  const languageDialog = languages.map(({ key, value }) => {
+  const languageButtons = languages.map(({ key, value }) => {
     if (key === 'en') {
       return `<a href="/">${value}</a>`
     } else {
@@ -28,24 +28,45 @@ export default ({
     <link rel="stylesheet" href="/styles/index.css">
 </head>
 <body>
-      <div class="homeCover">
-        <div class="bgMask"></div>
-        <div class="homeCoverContent">
+      <div class="cover">
+        <div class="mask"></div>
+        <div class="inner">
           <div class="title text-gradient">${title}</div>
           <div class="desc">${description}</div>
           <a class="button" href="${cloudAppUrl}">${readyToGO}</a>
           
-        <div class="languagesDialog">
-            ${languageDialog}
+        <div class="languages">
+            ${languageButtons}
         </div>
-        <div class="moreFrameworks">${moreFrameworks}</div>
+        <div class="more">${moreFrameworks}</div>
         </div>
       </div>
     <div class="body">
-        <div class="status">
+        <div>
             ${statusHtml}
         </div>
     </div>
+    <script>
+      var setDark = function(dark){
+          var highlight = document.querySelector('link[href*="highlight.js"]');
+          if(dark){
+              document.body.classList.add('dark')
+              if(highlight&&!highlight.href.includes('github-dark')){
+                  highlight.href = highlight.href.replace('github', 'github-dark')
+              }
+          }else{
+              document.body.classList.remove('dark')
+              if(highlight&&highlight.href.includes('github-dark')){
+                  highlight.href = highlight.href.replace('github-dark', 'github')
+              }
+          }
+      }
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          setDark(true)
+      }else{
+          setDark(false)
+      }
+    </script>
 </body>
 </html>`
 }
