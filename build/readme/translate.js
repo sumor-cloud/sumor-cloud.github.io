@@ -14,7 +14,7 @@ const model = new Model({
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
 export default async () => {
-  const max = 5
+  const max = 20
   let count = 0
   for (const pkg in packagesInfo) {
     const sourcePath = `${process.cwd()}/readmes/${pkg}`
@@ -35,6 +35,7 @@ export default async () => {
             if (translateFile.length > 0 && translateFile.length < 7000) {
               if (count < max) {
                 count++
+                const startTime = Date.now()
                 const llmResult = await model.chat('gpt-3.5-turbo', [
                   {
                     role: 'system',
@@ -47,8 +48,10 @@ export default async () => {
                 ])
                 const translatedFile = llmResult.content
                 await fse.writeFile(targetFilePath, translatedFile)
+                console.log(`Translated in ${Date.now() - startTime}ms...`)
                 await delay(100)
               } else {
+                console.log(`Skip ${pkg} ${file} to ${language} due to rate limit ${max} times...`)
                 return
               }
             } else {
