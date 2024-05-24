@@ -1,7 +1,7 @@
 name: Update
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '*/15 * * * *'
 jobs:
   test:
     name: Unit test for latest dependencies
