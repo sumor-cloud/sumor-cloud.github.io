@@ -1,4 +1,6 @@
 name: Reload README
+permissions:
+  actions: write
 on:
   push:
     branches: [ "main" ]
