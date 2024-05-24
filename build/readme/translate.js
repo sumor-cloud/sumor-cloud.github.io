@@ -14,7 +14,7 @@ const model = new Model({
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
 export default async () => {
-  const max = 20
+  const max = 10
   let count = 0
   for (const pkg in packagesInfo) {
     const sourcePath = `${process.cwd()}/readmes/${pkg}`

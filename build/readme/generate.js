@@ -6,8 +6,9 @@ import packagesInfo from '../packagesInfo.js'
 import versionSorter from '../../src/utils/versionSorter.js'
 import pageTemplate from './pageTemplate.js'
 import i18n from '../entry/i18n.js'
+import languages from '../entry/languages.js'
 
-const languages = ['en-US', 'zh-CN', 'es-ES', 'fr-FR', 'de-DE', 'ja-JP', 'ko-KR', 'ru-RU', 'pt-BR', 'ar-SA']
+const languageCodes = ['en-US', 'zh-CN', 'es-ES', 'fr-FR', 'de-DE', 'ja-JP', 'ko-KR', 'ru-RU', 'pt-BR', 'ar-SA']
 
 const marked = new Marked(
   markedHighlight({
@@ -21,7 +22,7 @@ const marked = new Marked(
 
 export default async () => {
   for (const pkg in packagesInfo) {
-    for (const language of languages) {
+    for (const language of languageCodes) {
       const baseLanguage = language.split('-')[0]
       const sourcePath = `${process.cwd()}/readmesTranslate/${baseLanguage}/${pkg}`
       if (await fse.exists(sourcePath)) {
@@ -46,6 +47,7 @@ export default async () => {
             const translateInfo = i18n[language]
             await fse.writeFile(`${targetPath}/${version}.html`, pageTemplate({
               language: baseLanguage,
+              languages,
               pkg,
               version,
               versions,
@@ -54,6 +56,7 @@ export default async () => {
             }))
             await fse.writeFile(`${targetLanguagePath}/${version}.html`, pageTemplate({
               language,
+              languages,
               pkg,
               version,
               versions,

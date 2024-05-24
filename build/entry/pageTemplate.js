@@ -4,10 +4,10 @@ export default ({
   description,
   readyToGO,
   moreFrameworks,
-  languageList,
+  languages,
   packages
 }) => {
-  const languageDialog = languageList.map(({ key, value }) => {
+  const languageDialog = languages.map(({ key, value }) => {
     if (key === 'en') {
       return `<a href="/">${value}</a>`
     } else {

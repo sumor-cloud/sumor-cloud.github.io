@@ -1,4 +1,11 @@
-export default ({ language, pkg, version, versions, html, translateInfo }) => {
+export default ({ language, languages, pkg, version, versions, html, translateInfo }) => {
+  const languageDialog = languages.map(({ key, value }) => {
+    if (key === 'en') {
+      return `<a href="/${pkg}/${version}.html">${value}</a>`
+    } else {
+      return `<a href="/${key}/${pkg}/${version}.html">${value}</a>`
+    }
+  }).join(' | ')
   const versionList = versions.map(version => {
     if (language === 'en') {
       return `<a href="/${pkg}/${version}.html">v${version}</a>`
@@ -18,23 +25,31 @@ export default ({ language, pkg, version, versions, html, translateInfo }) => {
 </head>
 <body>
     <div class="pageHeader">
-        <div class="logo">
-            <a href="/${language === 'en' ? '' : language}">${translateInfo.title}</a>
-        </div>
-        <div class="pageTitle">
-            <div class="text">@sumor/${pkg}</div>
-            <div class="versionBox">
-                <div class="version">
-                v${version}
-                <div class="versions">
-                    ${versionList}
-                </div>
+        <div class="bgMask"></div>
+        <div class="pageHeaderInner">
+            <div class="logo">
+                <a href="/${language === 'en' ? '' : language}">${translateInfo.title}</a>
+            </div>
+            <div class="pageTitle">
+                <div class="text">@sumor/${pkg}</div>
+                <div class="versionBox">
+                    <div class="version">
+                    v${version}
+                    <div class="versions">
+                        ${versionList}
+                    </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="body">
         ${html}
+    </div>
+    <div class="footer">
+        <div class="languagesFooter">
+            ${languageDialog}
+        </div>
     </div>
 </body>
 </html>`
