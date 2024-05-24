@@ -10,3 +10,6 @@ output/
 
 # runtime config
 ./ssl/
+
+# config
+config.json
