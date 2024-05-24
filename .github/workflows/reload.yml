@@ -1,10 +1,12 @@
-name: Update
+name: Reload README
 on:
+  push:
+    branches: [ "main" ]
   schedule:
     - cron: '*/15 * * * *'
 jobs:
-  test:
-    name: Unit test for latest dependencies
+  reload:
+    name: Reload README for frameworks
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -29,5 +31,4 @@ jobs:
           git config --global user.email "dennis@sumor.com"
           git config --global user.name "Dennis"
           git add .
-          git commit -m "Update README"
-          git push
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update README" && git push)
