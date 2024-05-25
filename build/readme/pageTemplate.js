@@ -13,8 +13,15 @@ export default ({ language, languages, pkg, version, versions, html, translateIn
       return `<a href="/${language}/${pkg}/${version}.html">v${version}</a>`
     }
   }).join('\n')
+  let rightToLeft = ''
+  const baseLanguage = language.split('-')[0]
+  if (baseLanguage === 'ar' || baseLanguage === 'fa' || baseLanguage === 'he') {
+    rightToLeft = ' dir="rtl"'
+  }
+
+  html = html.replace(/<code/g, '<code dir="ltr"')
   return `
-<html lang="${language}">
+<html lang="${language}"${rightToLeft}>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -53,7 +60,7 @@ export default ({ language, languages, pkg, version, versions, html, translateIn
                 <a href="/${language === 'en' ? '' : language}">${translateInfo.title}</a>
             </div>
             <div class="headerTitle">
-                <div class="text">@sumor/${pkg}</div>
+                <div dir="ltr" class="text">@sumor/${pkg}</div>
                 <div class="dropdown">
                     <div class="dropdownButton">
                     v${version}

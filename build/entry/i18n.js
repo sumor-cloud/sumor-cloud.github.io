@@ -12,6 +12,7 @@
 // https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
 // https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers
 
+// languages: en, zh, es, ar, fr, ru, de, pt, ja, ko
 // "Sumor" should keep the word "Sumor" in all languages. But "Cloud Frameworks" should be translated.
 export default {
   'en-US': {

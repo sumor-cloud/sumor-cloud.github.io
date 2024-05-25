@@ -18,8 +18,13 @@ export default ({
   if (language === 'en') {
     cloudAppUrl = '/cloud-app'
   }
+  let rightToLeft = ''
+  const baseLanguage = language.split('-')[0]
+  if (baseLanguage === 'ar' || baseLanguage === 'fa' || baseLanguage === 'he') {
+    rightToLeft = ' dir="rtl"'
+  }
   return `<!DOCTYPE html>
-<html lang="${language}">
+<html lang="${language}"${rightToLeft}>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

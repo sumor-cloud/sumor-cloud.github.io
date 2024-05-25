@@ -15,5 +15,9 @@ export default async (language) => {
   })
 
   markdown += packagesStatus.join('\n\n')
-  return marked(markdown)
+  let html = marked(markdown)
+
+  html = html.replace(/<a/g, '<a dir="ltr"')
+
+  return html
 }
