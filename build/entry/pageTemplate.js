@@ -56,6 +56,12 @@ export default ({
 </head>
 <body>
       <div class="cover">
+      <video class="light" autoplay muted loop>
+        <source src="/videos/Cover.mp4" type="video/mp4">
+      </video>
+      <video class="dark" autoplay muted loop>
+        <source src="/videos/CoverDark.mp4" type="video/mp4">
+      </video>
         <div class="mask"></div>
         <div class="inner">
           <div class="title text-gradient">${title}</div>
