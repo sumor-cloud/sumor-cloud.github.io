@@ -32,7 +32,9 @@ export default async () => {
           } else {
             console.log(`Translating ${pkg} ${file} to ${language}...`)
             const translateFile = await fse.readFile(sourceFilePath, 'utf-8')
-            if (translateFile.length > 0 && translateFile.length < 7000) {
+            if (translateFile.length > 0) {
+              await fse.writeFile(targetFilePath, '')
+            } else if (translateFile.length < 7000) {
               if (count < max) {
                 count++
                 const startTime = Date.now()
