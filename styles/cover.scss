@@ -68,8 +68,11 @@
   }
   .languages{
     position: absolute;
-    bottom: 50px;
-    padding: 20px;
+    bottom: 70px;
+    background: rgba(0, 0, 0, .5);
+    border-radius: 4px;
+    padding: 2px 5px;
+    width: fit-content;
     a{
       padding: 0 3px;
     }
