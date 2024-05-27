@@ -47,6 +47,11 @@ body.dark{
   }
 }
 
+::selection {
+  background: $color-primary;
+  color: $color-light;
+}
+
 @media screen and (max-width: 431px) {
   .body{
     padding: 20px;
