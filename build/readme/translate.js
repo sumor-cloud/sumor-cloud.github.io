@@ -26,13 +26,28 @@ export default async () => {
       for (const file of files) {
         const targetFilePath = `${targetPath}/${file}`
         const sourceFilePath = `${sourcePath}/${file}`
+
+        // fix legacy empty case issue
+        if (await fse.exists(sourceFilePath)) {
+          const sourceFile = await fse.readFile(sourceFilePath, 'utf-8')
+          if (sourceFile.length === 0) {
+            await fse.remove(targetFilePath)
+          }
+        }
+        if (await fse.exists(targetFilePath)) {
+          const targetFile = await fse.readFile(targetFilePath, 'utf-8')
+          if (targetFile.length === 0) {
+            await fse.remove(targetFilePath)
+          }
+        }
+
         if (!await fse.exists(targetFilePath)) {
           if (baseLanguage === 'en') {
             await fse.copy(sourceFilePath, targetFilePath)
           } else {
             console.log(`Translating ${pkg} ${file} to ${language}...`)
             const translateFile = await fse.readFile(sourceFilePath, 'utf-8')
-            if (translateFile.length > 0) {
+            if (translateFile.length === 0) {
               await fse.writeFile(targetFilePath, '')
             } else if (translateFile.length < 7000) {
               if (count < max) {
