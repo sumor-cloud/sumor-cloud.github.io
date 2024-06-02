@@ -8,6 +8,9 @@ export default {
   ux: {
     npm: '@sumor/ux'
   },
+  database: {
+    npm: '@sumor/database'
+  },
   logger: {
     npm: '@sumor/logger'
   },
