@@ -25,6 +25,7 @@ export default ({ language, languages, pkg, version, versions, html, translateIn
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name='description' content='@sumor/${pkg} v${version}'>
     <title>@sumor/${pkg} v${version}</title>
     
     <!--Favicons-->
