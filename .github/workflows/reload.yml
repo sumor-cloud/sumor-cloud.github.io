@@ -38,6 +38,7 @@ jobs:
         name: Set output
         run: git diff --quiet && git diff --staged --quiet && (echo "changed=false" >> $GITHUB_OUTPUT) || (echo "changed=true" >> $GITHUB_OUTPUT)
       - name: Git Push
+        if: steps.output.outputs.changed == 'true'
         run: git diff --quiet && git diff --staged --quiet || (git commit -m "Update README" && git push)
       - name: Build the website
         if: steps.output.outputs.changed == 'true'

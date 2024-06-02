@@ -27,19 +27,19 @@ export default async () => {
         const targetFilePath = `${targetPath}/${file}`
         const sourceFilePath = `${sourcePath}/${file}`
 
-        // fix legacy empty case issue
-        if (await fse.exists(sourceFilePath)) {
-          const sourceFile = await fse.readFile(sourceFilePath, 'utf-8')
-          if (sourceFile.length === 0) {
-            await fse.remove(targetFilePath)
-          }
-        }
-        if (await fse.exists(targetFilePath)) {
-          const targetFile = await fse.readFile(targetFilePath, 'utf-8')
-          if (targetFile.length === 0) {
-            await fse.remove(targetFilePath)
-          }
-        }
+        // // fix legacy empty case issue
+        // if (await fse.exists(sourceFilePath)) {
+        //   const sourceFile = await fse.readFile(sourceFilePath, 'utf-8')
+        //   if (sourceFile.length === 0) {
+        //     await fse.remove(targetFilePath)
+        //   }
+        // }
+        // if (await fse.exists(targetFilePath)) {
+        //   const targetFile = await fse.readFile(targetFilePath, 'utf-8')
+        //   if (targetFile.length === 0) {
+        //     await fse.remove(targetFilePath)
+        //   }
+        // }
 
         if (!await fse.exists(targetFilePath)) {
           if (baseLanguage === 'en') {
