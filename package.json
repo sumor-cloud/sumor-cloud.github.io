@@ -1,4 +1,5 @@
 {
+  "name": "sumor-cloud-github-page",
   "type": "module",
   "scripts": {
     "reload": "node build/readme/index.js",
