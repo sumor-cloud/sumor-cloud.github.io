@@ -56,12 +56,12 @@ export default ({
 </head>
 <body>
       <div class="cover">
-      <video class="light" autoplay muted loop>
-        <source src="/videos/Cover.mp4" type="video/mp4">
-      </video>
-      <video class="dark" autoplay muted loop>
-        <source src="/videos/CoverDark.mp4" type="video/mp4">
-      </video>
+<!--      <video class="light" autoplay muted loop>-->
+<!--        <source src="/videos/Cover.mp4" type="video/mp4">-->
+<!--      </video>-->
+<!--      <video class="dark" autoplay muted loop>-->
+<!--        <source src="/videos/CoverDark.mp4" type="video/mp4">-->
+<!--      </video>-->
         <div class="mask"></div>
         <div class="inner">
           <div class="title text-gradient">${title}</div>
@@ -99,6 +99,23 @@ export default ({
       }else{
           setDark(false)
       }
+      setTimeout(function(){
+          // add video dynamically
+            var video = document.createElement('video')
+            video.src = '/videos/Cover.mp4'
+            video.autoplay = true
+            video.muted = true
+            video.loop = true
+            video.classList.add('light')
+            document.querySelector('.cover').appendChild(video)
+            var videoDark = document.createElement('video')
+            videoDark.src = '/videos/CoverDark.mp4'
+            videoDark.autoplay = true
+            videoDark.muted = true
+            videoDark.loop = true
+            videoDark.classList.add('dark')
+            document.querySelector('.cover').appendChild(videoDark)
+      }, 3000)
     </script>
 </body>
 </html>`

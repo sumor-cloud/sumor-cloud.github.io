@@ -54,12 +54,12 @@ export default ({ language, languages, pkg, version, versions, html, translateIn
 </head>
 <body>
     <div class="header">
-        <video class="light" autoplay muted loop>
-          <source src="/videos/Cover.mp4" type="video/mp4">
-        </video>
-        <video class="dark" autoplay muted loop>
-          <source src="/videos/CoverDark.mp4" type="video/mp4">
-        </video>
+<!--        <video class="light" autoplay muted loop>-->
+<!--          <source src="/videos/Cover.mp4" type="video/mp4">-->
+<!--        </video>-->
+<!--        <video class="dark" autoplay muted loop>-->
+<!--          <source src="/videos/CoverDark.mp4" type="video/mp4">-->
+<!--        </video>-->
         <div class="mask"></div>
         <div class="inner">
             <div class="brand">
