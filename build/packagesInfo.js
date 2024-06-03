@@ -40,5 +40,8 @@ export default {
   },
   'llm-connector': {
     npm: '@sumor/llm-connector'
+  },
+  storage: {
+    npm: '@sumor/storage'
   }
 }
