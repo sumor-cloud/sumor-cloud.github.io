@@ -43,5 +43,8 @@ export default {
   },
   storage: {
     npm: '@sumor/storage'
+  },
+  'token-middleware': {
+    npm: '@sumor/token-middleware'
   }
 }
