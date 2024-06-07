@@ -5,6 +5,9 @@ const versions = async (name) => {
   try {
     let result = await execSync(`npm view ${name} versions --json`, { encoding: 'utf8' })
     result = JSON.parse(result)
+    if (typeof result === 'string') {
+      result = [result]
+    }
     return versionSorter(result)
   } catch (e) {
     return []
