@@ -1,7 +1,7 @@
 import { execSync } from 'child_process'
 import fse from 'fs-extra'
 import versionSorter from '../utils/versionSorter.js'
-const versions = async (name) => {
+const versions = async name => {
   try {
     let result = await execSync(`npm view ${name} versions --json`, { encoding: 'utf8' })
     result = JSON.parse(result)
@@ -33,7 +33,7 @@ const readme = async (name, path) => {
   const allVersions = await versions(name)
   for (const version of allVersions) {
     const versionReadmePath = `${path}/${version}.md`
-    if (!await fse.exists(versionReadmePath)) {
+    if (!(await fse.exists(versionReadmePath))) {
       const versionPath = await download(name, version)
       if (versionPath) {
         const readmeNames = ['README.md', 'ReadMe.md', 'readme.md']
@@ -43,7 +43,7 @@ const readme = async (name, path) => {
             await fse.copy(readmePath, versionReadmePath)
           }
         }
-        if (!await fse.exists(versionReadmePath)) {
+        if (!(await fse.exists(versionReadmePath))) {
           await fse.writeFile(versionReadmePath, '')
         }
       }

@@ -1,7 +1,7 @@
 import packagesInfo from '../packagesInfo.js'
 import { marked } from 'marked'
 
-export default async (language) => {
+export default async language => {
   const packages = Object.keys(packagesInfo)
 
   let markdown = ''

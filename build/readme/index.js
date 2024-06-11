@@ -1,7 +1,7 @@
 import loadReadme from './load.js'
 import translateReadme from './translate.js'
 
-const rerun = async (callback) => {
+const rerun = async callback => {
   try {
     await callback()
   } catch (e) {

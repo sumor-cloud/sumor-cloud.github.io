@@ -73,7 +73,8 @@ export default {
   },
   'ja-JP': {
     title: 'Sumor クラウドフレームワーク',
-    description: 'Sumor クラウドフレームワークはクラウドコンピューティングフレームワークのコレクションです。',
+    description:
+      'Sumor クラウドフレームワークはクラウドコンピューティングフレームワークのコレクションです。',
     readyToGO: 'すぐに始める',
     moreFrameworks: 'さらにフレームワーク',
     language: '日本語'

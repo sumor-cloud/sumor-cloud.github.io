@@ -1,4 +1,4 @@
-.header{
+.header {
   position: relative;
   padding: 20px 50px;
   width: 100%;
@@ -7,10 +7,10 @@
   background-size: cover;
   background-position: center;
   color: $color-light;
-  a{
+  a {
     color: $color-light;
   }
-  video{
+  video {
     position: absolute;
     top: 0;
     left: 0;
@@ -19,110 +19,109 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    &.dark{
+    &.dark {
       display: none;
     }
   }
-  .mask{
+  .mask {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba($color-dark,.3);
+    background: rgba($color-dark, 0.3);
   }
-  .inner{
+  .inner {
     position: relative;
     z-index: 1;
     padding: 30px;
   }
 
-
-  .brand{
-    a{
+  .brand {
+    a {
       background: linear-gradient(94.23deg, #5374fa 12.41%, #fd9179 52.55%, #ff6969 89.95%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       font-size: 20px;
-      &::selection{
+      &::selection {
         -webkit-background-clip: inherit;
         -webkit-text-fill-color: #fff;
       }
     }
   }
 
-  .headerTitle{
+  .headerTitle {
     position: relative;
     display: flex;
     align-items: end;
     width: 100%;
     padding-top: 10px;
-    .text{
+    .text {
       font-size: 2em;
       font-weight: bold;
     }
   }
 
-  .languages{
+  .languages {
     margin-top: 20px;
-    background: rgba(0, 0, 0, .5);
+    background: rgba(0, 0, 0, 0.5);
     border-radius: 4px;
     padding: 2px 5px;
     width: fit-content;
-    a{
+    a {
       padding: 0 3px;
     }
   }
 }
 
-.dropdown{
+.dropdown {
   //display: flex;
   //align-items: end;
   padding-bottom: 6px;
 
-  .dropdownButton{
+  .dropdownButton {
     font-size: 14px;
     font-weight: normal;
     margin-left: 20px;
     padding: 2px 10px;
-    background: rgba(0, 0, 0, .5);
+    background: rgba(0, 0, 0, 0.5);
     color: $color-light;
     border-radius: 4px;
     cursor: pointer;
   }
-  .dropdownList{
+  .dropdownList {
     position: absolute;
     display: none;
     flex-direction: column-reverse;
-    background: rgba(0, 0, 0, .5);
+    background: rgba(0, 0, 0, 0.5);
     padding: 5px 10px;
     margin-top: 5px;
     margin-left: -10px;
     font-size: 14px;
     border-radius: 4px;
-    a{
+    a {
       color: $color-light;
     }
   }
 
-  &:hover{
-    .dropdownList{
+  &:hover {
+    .dropdownList {
       display: flex;
     }
   }
 }
 
-body.dark{
-  .header{
+body.dark {
+  .header {
     background-image: url('/images/CoverDark.jpg');
     //.mask{
     //  background: rgba($color-dark,.3);
     //}
-    video{
-      &.light{
+    video {
+      &.light {
         display: none;
       }
-      &.dark{
+      &.dark {
         display: block;
       }
     }
@@ -130,25 +129,25 @@ body.dark{
 }
 
 @media screen and (max-width: 431px) {
-  .header{
+  .header {
     padding: 0;
-    .inner{
+    .inner {
       padding: 50px 20px;
     }
-    .brand{
-      a{
+    .brand {
+      a {
         font-size: 18px;
       }
     }
-    .headerTitle{
-      .text{
+    .headerTitle {
+      .text {
         font-size: 22px;
       }
     }
   }
-  .dropdown{
+  .dropdown {
     padding-bottom: 0;
-    .dropdownButton{
+    .dropdownButton {
       margin-left: 10px;
     }
   }

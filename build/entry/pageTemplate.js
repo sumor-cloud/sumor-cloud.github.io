@@ -7,13 +7,15 @@ export default ({
   languages,
   statusHtml
 }) => {
-  const languageButtons = languages.map(({ key, value }) => {
-    if (key === 'en') {
-      return `<a href="/">${value}</a>`
-    } else {
-      return `<a href="/${key}">${value}</a>`
-    }
-  }).join(' | ')
+  const languageButtons = languages
+    .map(({ key, value }) => {
+      if (key === 'en') {
+        return `<a href="/">${value}</a>`
+      } else {
+        return `<a href="/${key}">${value}</a>`
+      }
+    })
+    .join(' | ')
   let cloudAppUrl = `/${language}/cloud-app`
   if (language === 'en') {
     cloudAppUrl = '/cloud-app'

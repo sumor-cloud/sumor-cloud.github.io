@@ -38,40 +38,40 @@ please change the following code in your `package.json` file:
 ## Usage
 
 ```javascript
-import getI18n from '@sumor/i18n';
+import getI18n from '@sumor/i18n'
 
 const i18nConfig = {
-    en: {
-        demo: {
-            hello: 'Hello',
-            welcome: 'Welcome',
-            greeting: 'Hello, {name}',
-            test: 'Test'
-        }
-    },
-    zh: {
-        demo: {
-            hello: '你好',
-            welcome: '欢迎'
-        }
-    },
-    'zh-TW': {
-        demo: {
-            hello: '妳好',
-            greeting: '妳好, {name}'
-        }
+  en: {
+    demo: {
+      hello: 'Hello',
+      welcome: 'Welcome',
+      greeting: 'Hello, {name}',
+      test: 'Test'
     }
-};
+  },
+  zh: {
+    demo: {
+      hello: '你好',
+      welcome: '欢迎'
+    }
+  },
+  'zh-TW': {
+    demo: {
+      hello: '妳好',
+      greeting: '妳好, {name}'
+    }
+  }
+}
 
-const i18n = getI18n('zh-TW', i18nConfig);
+const i18n = getI18n('zh-TW', i18nConfig)
 
 // match zh-TW
-console.log(i18n('demo.hello')); // 妳好
-console.log(i18n('demo.greeting', { name: 'John' })); // 妳好, John
+console.log(i18n('demo.hello')) // 妳好
+console.log(i18n('demo.greeting', { name: 'John' })) // 妳好, John
 
 // match zh
-console.log(i18n('demo.welcome')); // 欢迎
+console.log(i18n('demo.welcome')) // 欢迎
 
 // match en
-console.log(i18n('demo.test')); // Test
+console.log(i18n('demo.test')) // Test
 ```

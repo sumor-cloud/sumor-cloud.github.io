@@ -1,6 +1,4 @@
-import {
-  describe, expect, it
-} from '@jest/globals'
+import { describe, expect, it } from '@jest/globals'
 import npmUtils from '../src/npm/index.js'
 import fse from 'fs-extra'
 
@@ -16,20 +14,24 @@ describe('Npm Utils', () => {
     expect(packageInfo).toBeDefined()
     expect(packageInfo.name).toBe('@sumor/logger')
   })
-  it('readme', async () => {
-    const tmpPath = `${process.cwd()}/tmp/readme`
-    await fse.remove(tmpPath)
-    await fse.ensureDir(tmpPath)
-    await fse.writeFile(`${tmpPath}/1.0.1.md`, '# Overwrite')
-    await npmUtils.readme('@sumor/logger', tmpPath)
+  it(
+    'readme',
+    async () => {
+      const tmpPath = `${process.cwd()}/tmp/readme`
+      await fse.remove(tmpPath)
+      await fse.ensureDir(tmpPath)
+      await fse.writeFile(`${tmpPath}/1.0.1.md`, '# Overwrite')
+      await npmUtils.readme('@sumor/logger', tmpPath)
 
-    const MD100 = await fse.readFile(`${tmpPath}/1.0.0.md`, 'utf-8')
-    expect(MD100).toBeDefined()
-    expect(MD100.indexOf('# logger')).toBeGreaterThan(-1)
+      const MD100 = await fse.readFile(`${tmpPath}/1.0.0.md`, 'utf-8')
+      expect(MD100).toBeDefined()
+      expect(MD100.indexOf('# logger')).toBeGreaterThan(-1)
 
-    const MD101 = await fse.readFile(`${tmpPath}/1.0.1.md`, 'utf-8')
-    expect(MD101).toBeDefined()
-    expect(MD101.indexOf('# logger')).toEqual(-1)
-    expect(MD101.indexOf('# Overwrite')).toBeGreaterThan(-1)
-  }, 60 * 1000)
+      const MD101 = await fse.readFile(`${tmpPath}/1.0.1.md`, 'utf-8')
+      expect(MD101).toBeDefined()
+      expect(MD101.indexOf('# logger')).toEqual(-1)
+      expect(MD101.indexOf('# Overwrite')).toBeGreaterThan(-1)
+    },
+    60 * 1000
+  )
 })

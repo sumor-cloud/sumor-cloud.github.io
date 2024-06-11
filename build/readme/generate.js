@@ -8,12 +8,23 @@ import pageTemplate from './pageTemplate.js'
 import i18n from '../entry/i18n.js'
 import languages from '../entry/languages.js'
 
-const languageCodes = ['en-US', 'zh-CN', 'es-ES', 'fr-FR', 'de-DE', 'ja-JP', 'ko-KR', 'ru-RU', 'pt-BR', 'ar-SA']
+const languageCodes = [
+  'en-US',
+  'zh-CN',
+  'es-ES',
+  'fr-FR',
+  'de-DE',
+  'ja-JP',
+  'ko-KR',
+  'ru-RU',
+  'pt-BR',
+  'ar-SA'
+]
 
 const marked = new Marked(
   markedHighlight({
     langPrefix: 'hljs language-',
-    highlight (code, lang, info) {
+    highlight (code, lang) {
       const language = hljs.getLanguage(lang) ? lang : 'plaintext'
       return hljs.highlight(code, { language }).value
     }
@@ -45,24 +56,30 @@ export default async () => {
               html = marked.parse(content)
             }
             const translateInfo = i18n[language]
-            await fse.writeFile(`${targetPath}/${version}.html`, pageTemplate({
-              language: baseLanguage,
-              languages,
-              pkg,
-              version,
-              versions,
-              html,
-              translateInfo
-            }))
-            await fse.writeFile(`${targetLanguagePath}/${version}.html`, pageTemplate({
-              language,
-              languages,
-              pkg,
-              version,
-              versions,
-              html,
-              translateInfo
-            }))
+            await fse.writeFile(
+              `${targetPath}/${version}.html`,
+              pageTemplate({
+                language: baseLanguage,
+                languages,
+                pkg,
+                version,
+                versions,
+                html,
+                translateInfo
+              })
+            )
+            await fse.writeFile(
+              `${targetLanguagePath}/${version}.html`,
+              pageTemplate({
+                language,
+                languages,
+                pkg,
+                version,
+                versions,
+                html,
+                translateInfo
+              })
+            )
           }
         }
         const latestVersion = versions[versions.length - 1]

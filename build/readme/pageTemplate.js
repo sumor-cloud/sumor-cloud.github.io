@@ -1,18 +1,22 @@
 export default ({ language, languages, pkg, version, versions, html, translateInfo }) => {
-  const languageButtons = languages.map(({ key, value }) => {
-    if (key === 'en') {
-      return `<a href="/${pkg}/${version}.html">${value}</a>`
-    } else {
-      return `<a href="/${key}/${pkg}/${version}.html">${value}</a>`
-    }
-  }).join(' | ')
-  const versionList = versions.map(version => {
-    if (language === 'en') {
-      return `<a href="/${pkg}/${version}.html">v${version}</a>`
-    } else {
-      return `<a href="/${language}/${pkg}/${version}.html">v${version}</a>`
-    }
-  }).join('\n')
+  const languageButtons = languages
+    .map(({ key, value }) => {
+      if (key === 'en') {
+        return `<a href="/${pkg}/${version}.html">${value}</a>`
+      } else {
+        return `<a href="/${key}/${pkg}/${version}.html">${value}</a>`
+      }
+    })
+    .join(' | ')
+  const versionList = versions
+    .map(version => {
+      if (language === 'en') {
+        return `<a href="/${pkg}/${version}.html">v${version}</a>`
+      } else {
+        return `<a href="/${language}/${pkg}/${version}.html">v${version}</a>`
+      }
+    })
+    .join('\n')
   let rightToLeft = ''
   const baseLanguage = language.split('-')[0]
   if (baseLanguage === 'ar' || baseLanguage === 'fa' || baseLanguage === 'he') {

@@ -4,7 +4,7 @@ import pageTemplate from './pageTemplate.js'
 import languages from './languages.js'
 import generateStatus from './generateStatus.js'
 
-export default async (data) => {
+export default async data => {
   const output = `${process.cwd()}/output/web`
   await fse.ensureDir(output)
 
@@ -15,12 +15,15 @@ export default async (data) => {
     const statusHtml = await generateStatus(language)
     const languageHome = `${output}/${language}`
     await fse.ensureDir(languageHome)
-    await fse.writeFile(`${languageHome}/index.html`, pageTemplate({
-      ...translateInfo,
-      language,
-      languages,
-      statusHtml
-    }))
+    await fse.writeFile(
+      `${languageHome}/index.html`,
+      pageTemplate({
+        ...translateInfo,
+        language,
+        languages,
+        statusHtml
+      })
+    )
 
     const baseStatusHtml = await generateStatus(baseLanguage)
     let baseLanguageHome = `${output}/${baseLanguage}`
@@ -28,11 +31,14 @@ export default async (data) => {
       baseLanguageHome = output
     }
     await fse.ensureDir(baseLanguageHome)
-    await fse.writeFile(`${baseLanguageHome}/index.html`, pageTemplate({
-      ...translateInfo,
-      language: baseLanguage,
-      languages,
-      statusHtml: baseStatusHtml
-    }))
+    await fse.writeFile(
+      `${baseLanguageHome}/index.html`,
+      pageTemplate({
+        ...translateInfo,
+        language: baseLanguage,
+        languages,
+        statusHtml: baseStatusHtml
+      })
+    )
   }
 }

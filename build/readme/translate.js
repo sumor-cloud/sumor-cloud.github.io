@@ -2,7 +2,18 @@ import { glob } from 'glob'
 import fse from 'fs-extra'
 import Model from '@sumor/llm-connector'
 import packagesInfo from '../packagesInfo.js'
-const languages = ['en-US', 'zh-CN', 'es-ES', 'fr-FR', 'de-DE', 'ja-JP', 'ko-KR', 'ru-RU', 'pt-BR', 'ar-SA']
+const languages = [
+  'en-US',
+  'zh-CN',
+  'es-ES',
+  'fr-FR',
+  'de-DE',
+  'ja-JP',
+  'ko-KR',
+  'ru-RU',
+  'pt-BR',
+  'ar-SA'
+]
 // const languages = ["en", "zh", "es", "fr", "de", "ja", "ko", "ru", "pt", "ar"];
 
 const config = await fse.readJson(`${process.cwd()}/config.json`)
@@ -11,7 +22,7 @@ const model = new Model({
   key: config.llm
 })
 
-const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 export default async () => {
   const max = 30
@@ -41,7 +52,7 @@ export default async () => {
         //   }
         // }
 
-        if (!await fse.exists(targetFilePath)) {
+        if (!(await fse.exists(targetFilePath))) {
           if (baseLanguage === 'en') {
             await fse.copy(sourceFilePath, targetFilePath)
           } else {
@@ -72,7 +83,9 @@ export default async () => {
                 return
               }
             } else {
-              console.log(`Skip ${pkg} ${file} to ${language} due to length ${translateFile.length}...`)
+              console.log(
+                `Skip ${pkg} ${file} to ${language} due to length ${translateFile.length}...`
+              )
             }
           }
         }
