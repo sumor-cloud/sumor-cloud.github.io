@@ -27,6 +27,8 @@ jobs:
         run: echo '${{ secrets.UPDATE_CONFIG }}' > ./config.json
       - name: Update README
         run: npm run reload
+      - name: Auto fix
+        run: npm run autofix
       - name: Eslint fix
         run: npm run lint:fix
       - name: Commit changes
