@@ -2,49 +2,49 @@ export default {
   'cloud-app': {
     npm: '@sumor/cloud-app'
   },
-  'app-deployer': {
-    npm: '@sumor/app-deployer'
-  },
-  ux: {
-    npm: '@sumor/ux'
-  },
-  database: {
-    npm: '@sumor/database'
-  },
-  logger: {
-    npm: '@sumor/logger'
+  'api-middleware': {
+    npm: '@sumor/api-middleware'
   },
   config: {
     npm: '@sumor/config'
   },
-  i18n: {
-    npm: '@sumor/i18n'
-  },
-  'ssl-server': {
-    npm: '@sumor/ssl-server'
-  },
   validator: {
     npm: '@sumor/validator'
   },
-  'ssh-tools': {
-    npm: '@sumor/ssh-tools'
+  database: {
+    npm: '@sumor/database'
   },
-  error: {
-    npm: '@sumor/error'
+  'token-middleware': {
+    npm: '@sumor/token-middleware'
   },
-  'api-middleware': {
-    npm: '@sumor/api-middleware'
-  },
-  'short-id': {
-    npm: '@sumor/short-id'
+  ux: {
+    npm: '@sumor/ux'
   },
   'llm-connector': {
     npm: '@sumor/llm-connector'
   },
+  'ssl-server': {
+    npm: '@sumor/ssl-server'
+  },
+  'short-id': {
+    npm: '@sumor/short-id'
+  },
+  logger: {
+    npm: '@sumor/logger'
+  },
+  i18n: {
+    npm: '@sumor/i18n'
+  },
+  error: {
+    npm: '@sumor/error'
+  },
   storage: {
     npm: '@sumor/storage'
   },
-  'token-middleware': {
-    npm: '@sumor/token-middleware'
+  'app-deployer': {
+    npm: '@sumor/app-deployer'
+  },
+  'ssh-tools': {
+    npm: '@sumor/ssh-tools'
   }
 }
