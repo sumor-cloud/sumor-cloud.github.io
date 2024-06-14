@@ -1,8 +1,10 @@
-name: Reload README
+name: Update Page
 permissions:
   actions: write
   contents: write
 on:
+  push:
+    branches: [ 'main' ]
   schedule:
     - cron: '*/15 * * * *'
 jobs:
@@ -31,8 +33,6 @@ jobs:
         run: npm run reload
       - name: Auto fix
         run: npm run autofix
-      - name: Eslint fix
-        run: npm run lint:fix
       - name: Commit changes
         run: |
           git config --global user.email "dennis@sumor.com"
