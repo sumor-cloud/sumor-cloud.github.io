@@ -3,7 +3,9 @@ import fse from 'fs-extra'
 import versionSorter from '../utils/versionSorter.js'
 const versions = async name => {
   try {
-    let result = await execSync(`npm view ${name} versions --json`, { encoding: 'utf8' })
+    let result = await execSync(`npm view ${name} versions --json`, {
+      encoding: 'utf8'
+    })
     result = JSON.parse(result)
     if (typeof result === 'string') {
       result = [result]
