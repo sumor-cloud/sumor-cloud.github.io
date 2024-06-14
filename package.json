@@ -13,7 +13,8 @@
     "check": "npm run autofix && npm run coverage"
   },
   "devDependencies": {
-    "@sumor/llm-connector": "^1.0.1",
+    "@sumor/config": "^1.3.2",
+    "@sumor/llm-connector": "^1.0.4",
     "express": "^4.19.2",
     "fs-extra": "^11.2.0",
     "glob": "^10.3.16",

@@ -1,4 +1,5 @@
 import { glob } from 'glob'
+import { load } from '@sumor/config'
 import fse from 'fs-extra'
 import Model from '@sumor/llm-connector'
 import packagesInfo from '../packagesInfo.js'
@@ -16,11 +17,8 @@ const languages = [
 ]
 // const languages = ["en", "zh", "es", "fr", "de", "ja", "ko", "ru", "pt", "ar"];
 
-const config = await fse.readJson(`${process.cwd()}/config.json`)
-const model = new Model({
-  type: 'openAI',
-  key: config.llm
-})
+const config = await load(`${process.cwd()}/test/config`, 'config')
+const model = new Model(config.llm)
 
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 
