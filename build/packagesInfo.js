@@ -46,5 +46,8 @@ export default {
   },
   'ssh-tools': {
     npm: '@sumor/ssh-tools'
+  },
+  'ssh-docker': {
+    npm: '@sumor/ssh-docker'
   }
 }
