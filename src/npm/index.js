@@ -64,9 +64,9 @@ const updateFile = async (path, content) => {
     const oldContent = await fse.readFile(path, 'utf-8')
     if (oldContent !== content) {
       await fse.writeFile(path, content)
-    } else {
-      await fse.writeFile(path, content)
     }
+  } else {
+    await fse.writeFile(path, content)
   }
 }
 const readme = async (name, path) => {
