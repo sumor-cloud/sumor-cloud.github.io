@@ -58,13 +58,24 @@ const download = async (name, version) => {
     return null
   }
 }
+const updateFile = async (path, content) => {
+  const exists = await fse.exists(path)
+  if (exists) {
+    const oldContent = await fse.readFile(path, 'utf-8')
+    if (oldContent !== content) {
+      await fse.writeFile(path, content)
+    } else {
+      await fse.writeFile(path, content)
+    }
+  }
+}
 const readme = async (name, path) => {
   await fse.ensureDir(`${path}`)
   const { activeVersions, deprecatedVersions } = await versions(name)
   const versionsJsonPath = `${path}/versions.json`
   const deprecatedJsonPath = `${path}/deprecated.json`
-  await fse.writeJson(versionsJsonPath, activeVersions)
-  await fse.writeJson(deprecatedJsonPath, deprecatedVersions)
+  await updateFile(versionsJsonPath, JSON.stringify(activeVersions))
+  await updateFile(deprecatedJsonPath, JSON.stringify(deprecatedVersions))
   for (const version of activeVersions) {
     const versionReadmePath = `${path}/${version}.md`
     if (!(await fse.exists(versionReadmePath))) {
