@@ -3,14 +3,42 @@ import fse from 'fs-extra'
 import versionSorter from '../utils/versionSorter.js'
 const versions = async name => {
   try {
-    let result = await execSync(`npm view ${name} versions --json`, {
-      encoding: 'utf8'
-    })
-    result = JSON.parse(result)
-    if (typeof result === 'string') {
-      result = [result]
+    const fetchNPMArr = function (cmd) {
+      let result = execSync(cmd, {
+        encoding: 'utf8'
+      })
+      result = JSON.parse(result)
+      if (typeof result === 'string') {
+        result = [result]
+      }
+      return result
     }
-    return versionSorter(result)
+    const allVersions = fetchNPMArr(`npm view ${name} versions --json`)
+
+    const checkDeprecated = function (version) {
+      const cmd = `npm view ${name}@${version} deprecated --json`
+      const result = execSync(cmd, {
+        encoding: 'utf8'
+      })
+      if (result && result !== '') {
+        return true
+      } else {
+        return false
+      }
+    }
+    const deprecatedVersions = []
+    const activeVersions = []
+    for (let i = 0; i < allVersions.length; i++) {
+      if (checkDeprecated(allVersions[i])) {
+        deprecatedVersions.push(allVersions[i])
+      } else {
+        activeVersions.push(allVersions[i])
+      }
+    }
+    return {
+      deprecatedVersions: versionSorter(deprecatedVersions),
+      activeVersions: versionSorter(activeVersions)
+    }
   } catch (e) {
     return []
   }
@@ -32,8 +60,12 @@ const download = async (name, version) => {
 }
 const readme = async (name, path) => {
   await fse.ensureDir(`${path}`)
-  const allVersions = await versions(name)
-  for (const version of allVersions) {
+  const { activeVersions, deprecatedVersions } = await versions(name)
+  const versionsJsonPath = `${path}/versions.json`
+  const deprecatedJsonPath = `${path}/deprecated.json`
+  await fse.writeJson(versionsJsonPath, activeVersions)
+  await fse.writeJson(deprecatedJsonPath, deprecatedVersions)
+  for (const version of activeVersions) {
     const versionReadmePath = `${path}/${version}.md`
     if (!(await fse.exists(versionReadmePath))) {
       const versionPath = await download(name, version)

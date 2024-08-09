@@ -37,8 +37,17 @@ export default async () => {
       const baseLanguage = language.split('-')[0]
       const sourcePath = `${process.cwd()}/readmesTranslate/${baseLanguage}/${pkg}`
       if (await fse.exists(sourcePath)) {
+        const originPath = `${process.cwd()}/readmes/${pkg}`
+        const activeVersions = await fse.readJson(`${originPath}/versions.json`)
+        const deprecatedVersions = await fse.readJson(`${originPath}/deprecated.json`)
         const files = await fse.readdir(sourcePath)
         const versions = versionSorter(files.map(file => file.replace('.md', '')))
+        const versionList = versions.map(version => {
+          return {
+            name: version,
+            deprecated: deprecatedVersions.includes(version)
+          }
+        })
         for (const version of versions) {
           const fileName = `${version}.md`
           const filePath = `${sourcePath}/${fileName}`
@@ -63,7 +72,7 @@ export default async () => {
                 languages,
                 pkg,
                 version,
-                versions,
+                versions: versionList,
                 html,
                 translateInfo
               })
@@ -75,14 +84,15 @@ export default async () => {
                 languages,
                 pkg,
                 version,
-                versions,
+                versions: versionList,
                 html,
                 translateInfo
               })
             )
           }
         }
-        const latestVersion = versions[versions.length - 1]
+
+        const latestVersion = activeVersions.filter(o => !o.deprecated)[activeVersions.length - 1]
         let latestPath = `${process.cwd()}/output/web/${baseLanguage}/${pkg}/${latestVersion}.html`
         let indexPath = `${process.cwd()}/output/web/${baseLanguage}/${pkg}/index.html`
         if (baseLanguage === 'en') {

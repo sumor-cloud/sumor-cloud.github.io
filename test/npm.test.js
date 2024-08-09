@@ -4,9 +4,10 @@ import fse from 'fs-extra'
 
 describe('Npm Utils', () => {
   it('versions', async () => {
-    const versions = await npmUtils.versions('@sumor/logger')
-    expect(versions).toBeDefined()
-    expect(versions.indexOf('1.0.0')).toBeGreaterThan(-1)
+    const { activeVersions, deprecatedVersions } = await npmUtils.versions('@sumor/storage')
+    expect(activeVersions).toBeDefined()
+    expect(activeVersions.indexOf('1.0.0')).toBeGreaterThan(-1)
+    expect(deprecatedVersions.indexOf('17.0.0')).toBeGreaterThan(-1)
   })
   it('download', async () => {
     const path = await npmUtils.download('@sumor/logger', '1.0.0')

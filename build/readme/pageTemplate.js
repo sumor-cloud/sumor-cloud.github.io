@@ -9,11 +9,16 @@ export default ({ language, languages, pkg, version, versions, html, translateIn
     })
     .join(' | ')
   const versionList = versions
-    .map(version => {
-      if (language === 'en') {
-        return `<a href="/${pkg}/${version}.html">v${version}</a>`
+    .map(current => {
+      const { name, deprecated } = current
+      if (!deprecated) {
+        if (language === 'en') {
+          return `<a href="/${pkg}/${name}.html">v${name}</a>`
+        } else {
+          return `<a href="/${language}/${pkg}/${name}.html">v${name}</a>`
+        }
       } else {
-        return `<a href="/${language}/${pkg}/${version}.html">v${version}</a>`
+        return ''
       }
     })
     .join('\n')
