@@ -27,7 +27,7 @@ export default async () => {
   let count = 0
   for (const pkg in packagesInfo) {
     const sourcePath = `${process.cwd()}/readmes/${pkg}`
-    const files = await glob('**/*', { cwd: sourcePath })
+    const files = await glob('**/*.md', { cwd: sourcePath })
     for (const language of languages) {
       const baseLanguage = language.split('-')[0]
       const targetPath = `${process.cwd()}/readmesTranslate/${baseLanguage}/${pkg}`
