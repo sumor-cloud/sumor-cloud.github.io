@@ -1,6 +1,6 @@
 export default {
-  'git-builder': {
-    npm: '@sumor/git-builder'
+  git: {
+    npm: '@sumor/git'
   },
   'cloud-app': {
     npm: '@sumor/cloud-app'
